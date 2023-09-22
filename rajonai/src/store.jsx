@@ -1,7 +1,16 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
+import { main } from "./Reducers/main";
 
 export const Store = createContext();
 
 export const StoreProvider = ({ children }) => {
-  return <Store.Provider>{children}</Store.Provider>;
+  const [store, dispatch] = useReducer(main, {
+    page: "home",
+  });
+
+  return (
+    <Store.Provider value={{ page: store.page, dispatch }}>
+      {children}
+    </Store.Provider>
+  );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "../src/UI/Styles/App.scss";
 import App from "./App";
 import { StoreProvider } from "./store";
 
