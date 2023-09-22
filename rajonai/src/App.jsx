@@ -3,18 +3,24 @@ import "./UI/Styles/App.scss";
 import Home from "./Pages/Home";
 import { useContext } from "react";
 import { Store } from "./store";
+import Nav from "./Components/Nav";
+import Create from "./Pages/Sections/Create";
+import Login from "./Pages/Login";
 
 function App() {
-  const { page } = useContext(Store);
+  const { page, pageTop } = useContext(Store);
 
-  switch (page) {
-    case "home":
-      return <Home></Home>;
-    default:
-      <Home></Home>;
-  }
+  return (
+    <>
+      <div className="main-container">
+        {pageTop ? <Nav /> : null}
 
-  return <div className="main-container"></div>;
+        {page === "home" ? <Home></Home> : null}
+        {page === "section-create" ? <Create /> : null}
+        {page === "login" ? <Login /> : null}
+      </div>
+    </>
+  );
 }
 
 export default App;
