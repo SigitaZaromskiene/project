@@ -61,6 +61,17 @@ app.post("/admin/sections", (req, res) => {
   });
 });
 
+app.delete("/admin/sections/:id", (req, res) => {
+  const sql = `
+        DELETE FROM sections
+        WHERE id = ?
+    `;
+  con.query(sql, [req.params.id], (err) => {
+    if (err) throw err;
+    res.json({ msg: { text: "Sritis istrinta", type: "success" } });
+  });
+});
+
 // app.put("/fundraisers/:id", (req, res) => {
 //   const sql = `
 //         UPDATE fundraisers

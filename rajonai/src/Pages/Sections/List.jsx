@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { Store } from "../../store";
 import { useEffect } from "react";
+import { actionsList } from "../../store";
 
 function List() {
-  const { store } = useContext(Store);
+  const { store, dispatch } = useContext(Store);
 
   return (
     <div className="container">
@@ -15,7 +16,17 @@ function List() {
               <ul className="list-group">
                 {store?.data?.map((li) => (
                   <li className="list-group-item" key={li.id}>
-                    {li.title}
+                    <div className="li-bin">
+                      <div className="li-bin-content">{li.title}</div>
+                      <div className="li-bin-buttons">
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => dispatch(actionsList["delete"](li.id))}
+                        >
+                          Istrinti
+                        </button>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>

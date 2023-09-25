@@ -1,0 +1,8 @@
+.li-bin {
+  width: 100%;
+  @include flex(space-between, center, row, 10px);
+  &-buttons {
+    display: flex;
+    gap: 10px;
+  }
+}

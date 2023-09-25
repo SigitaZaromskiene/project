@@ -3,27 +3,41 @@ import {
   SECTIONS_LIST,
   REMOVE_MESSAGE,
   SECTIONS_CREATE,
+  SECTIONS_DELETE,
 } from "../Components/types";
+import { actionsList } from "../store";
 import { v4 as uuidv4 } from "uuid";
 
 export function main(state, action) {
   const copy = structuredClone(state);
 
   switch (action.type) {
+    case REMOVE_MESSAGE:
+      copy.messages = copy.messages.filter((m) => m.id !== action.payload.uuid);
+      return copy;
     case SECTIONS_CREATE:
-      const uuid = uuidv4();
-      if (!copy.messages) {
-        copy.messages = [];
+    case SECTIONS_DELETE:
+      if (action.payload.msg) {
+        const uuid = uuidv4();
+        if (!copy.messages) {
+          copy.messages = [];
+        }
+        copy.messages.push({ ...action.payload.msg, id: uuid });
+        setTimeout(() => {
+          action.doDispach({
+            type: REMOVE_MESSAGE,
+            payload: {
+              uuid,
+            },
+          });
+        }, 3000);
       }
-      copy.messages.push({ ...action.payload.msg, id: uuid });
-      setTimeout(() => {
-        action.doDispach({
-          type: REMOVE_MESSAGE,
-          payload: {
-            uuid,
-          },
-        });
-      }, 5000);
+
+      if (action.payload.show) {
+        setTimeout(() => {
+          action.doDispach(actionsList[action.payload.show]());
+        }, 1000);
+      }
       return copy;
 
     case SECTIONS_LIST:
