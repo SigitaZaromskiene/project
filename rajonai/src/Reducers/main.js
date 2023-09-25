@@ -17,6 +17,7 @@ export function main(state, action) {
         default:
           copy.pageTop = defaultNav;
       }
+
       return copy;
   }
 
