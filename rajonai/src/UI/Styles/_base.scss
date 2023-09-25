@@ -13,3 +13,11 @@ body {
   min-height: 100vh;
   background-color: rgba(0, 255, 255, 0.608);
 }
+
+.messages-bin {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  max-width: 300px;
+  z-index: 9999;
+}

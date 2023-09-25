@@ -7,13 +7,17 @@ import Nav from "./Components/Nav";
 import Create from "./Pages/Sections/Create";
 import Login from "./Pages/Login";
 import List from "./Pages/Sections/List";
+import Messages from "./Components/Messages";
 
 function App() {
-  const { page, pageTop } = useContext(Store);
+  const { page, pageTop, messages } = useContext(Store);
 
   return (
     <>
       <div className="main-container">
+        {messages && messages.length ? (
+          <Messages messages={messages}></Messages>
+        ) : null}
         {pageTop ? <Nav /> : null}
 
         {page === "home" ? <Home></Home> : null}

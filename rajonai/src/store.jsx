@@ -1,10 +1,12 @@
 import { createContext, useReducer } from "react";
 import { main } from "./Reducers/main";
-import { sectionList } from "./actions";
+import { sectionList, sectionCreate } from "./actions";
 import axios from "axios";
+import { useMessages } from "./Use/useMessages";
 
 const actionsList = {
   ["list"]: sectionList,
+  ["create"]: sectionCreate,
 };
 
 const url = "http://localhost:3008/";
@@ -17,12 +19,26 @@ export const StoreProvider = ({ children }) => {
     pageTop: "nav",
   });
 
+  const [messages, setMessage] = useMessages();
+
+  const doDispach = (action) => {
+    dataDispach(action);
+  };
   const dataDispach = (action) => {
     if (!action.payload || !action.payload.url) {
       dispatch(action);
     } else {
-      axios[action.payload.method](url + action.payload.url).then((res) => {
-        action = { ...action, payload: { ...action.payload, ...res.data } };
+      const args = [url + action.payload.url];
+
+      if (action.payload.body) {
+        args.push(action.payload.body);
+      }
+      axios[action.payload.method](...args).then((res) => {
+        action = {
+          ...action,
+          payload: { ...action.payload, ...res.data },
+          doDispach,
+        };
         dispatch(action);
       });
     }
@@ -36,6 +52,7 @@ export const StoreProvider = ({ children }) => {
         dispatch: dataDispach,
         store,
         actionsList,
+        messages: store.messages,
       }}
     >
       {children}

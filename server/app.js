@@ -46,6 +46,21 @@ app.get("/admin/sections", (req, res) => {
   });
 });
 
+app.post("/admin/sections", (req, res) => {
+  const sql = `
+  INSERT INTO sections (title)
+  VALUES (?)
+
+  `;
+
+  con.query(sql, [req.body.input], (err) => {
+    if (err) throw err;
+    res.json({
+      msg: { text: "Nauja sritis prideta", type: "success" },
+    });
+  });
+});
+
 // app.put("/fundraisers/:id", (req, res) => {
 //   const sql = `
 //         UPDATE fundraisers

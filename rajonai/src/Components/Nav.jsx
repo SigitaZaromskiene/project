@@ -31,7 +31,7 @@ function Nav() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link show="list" className="nav-link active">
+              <Link action="list" className="nav-link active">
                 List
               </Link>
             </li>
