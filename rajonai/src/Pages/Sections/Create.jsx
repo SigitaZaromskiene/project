@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 function Create() {
+  const [input, setInput] = useState("");
   return (
     <div className="container">
       <div className="row justify-content-center">
@@ -21,6 +24,8 @@ function Create() {
                   className="form-control form-control-sm"
                   id="formFile"
                   type="file"
+                  onChange={(e) => setInput(e.target.value)}
+                  value={input}
                 />
                 <div className="form-text">
                   Pridėkite naujo rajono herbo paveikslėlį

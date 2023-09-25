@@ -31,7 +31,14 @@ function Nav() {
               </Link>
             </li>
             <li className="nav-item">
-                <Link to='login' className="nav-link active">LOGIN</Link>
+              <Link show="list" className="nav-link active">
+                List
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="login" className="nav-link active">
+                LOGIN
+              </Link>
             </li>
           </ul>
           <span className="navbar-text">

@@ -42,7 +42,7 @@ app.get("/admin/sections", (req, res) => {
   `;
   con.query(sql, (err, result) => {
     if (err) throw err;
-    res.json(result);
+    res.json({ data: result });
   });
 });
 
