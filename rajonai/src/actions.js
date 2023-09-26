@@ -3,6 +3,7 @@ import {
   SECTIONS_LIST,
   SECTIONS_CREATE,
   SECTIONS_DELETE,
+  SECTIONS_SHOW_EDIT,
 } from "./Components/types";
 
 export const navigate = (to) => {
@@ -45,6 +46,17 @@ export const sectionDelete = (id) => {
       method: "delete",
 
       show: "list",
+    },
+  };
+};
+
+export const sectionShowEdit = (id) => {
+  return {
+    type: SECTIONS_SHOW_EDIT,
+    payload: {
+      url: "admin/sections/edit/" + id,
+      method: "get",
+      page: "edit",
     },
   };
 };

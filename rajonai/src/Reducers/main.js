@@ -4,6 +4,7 @@ import {
   REMOVE_MESSAGE,
   SECTIONS_CREATE,
   SECTIONS_DELETE,
+  SECTIONS_SHOW_EDIT,
 } from "../Components/types";
 import { actionsList } from "../store";
 import { v4 as uuidv4 } from "uuid";
@@ -41,6 +42,7 @@ export function main(state, action) {
       return copy;
 
     case SECTIONS_LIST:
+    case SECTIONS_SHOW_EDIT:
       copy.pageTop = "nav";
       copy.page = action.payload.page;
       copy.data = action.payload.data;

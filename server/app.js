@@ -46,6 +46,20 @@ app.get("/admin/sections", (req, res) => {
   });
 });
 
+app.get("/admin/sections/edit/:id", (req, res) => {
+  const sql = `
+  SELECT id, title
+  FROM sections
+  WHERE id = ?
+  
+
+  `;
+  con.query(sql, [req.params.id], (err, result) => {
+    if (err) throw err;
+    res.json({ data: result[0] });
+  });
+});
+
 app.post("/admin/sections", (req, res) => {
   const sql = `
   INSERT INTO sections (title)

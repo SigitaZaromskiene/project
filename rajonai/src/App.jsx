@@ -8,6 +8,7 @@ import Create from "./Pages/Sections/Create";
 import Login from "./Pages/Login";
 import List from "./Pages/Sections/List";
 import Messages from "./Components/Messages";
+import Edit from "./Pages/Sections/Edit";
 
 function App() {
   const { page, pageTop, messages } = useContext(Store);
@@ -24,6 +25,7 @@ function App() {
         {page === "section-create" ? <Create /> : null}
         {page === "list" ? <List /> : null}
         {page === "login" ? <Login /> : null}
+        {page === "edit" ? <Edit /> : null}
       </div>
     </>
   );

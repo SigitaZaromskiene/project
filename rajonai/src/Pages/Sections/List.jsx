@@ -25,6 +25,12 @@ function List() {
                         >
                           Istrinti
                         </button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => dispatch(actionsList["edit"](li.id))}
+                        >
+                          Edit
+                        </button>
                       </div>
                     </div>
                   </li>

@@ -1,6 +1,11 @@
 import { createContext, useReducer } from "react";
 import { main } from "./Reducers/main";
-import { sectionList, sectionCreate, sectionDelete } from "./actions";
+import {
+  sectionList,
+  sectionCreate,
+  sectionDelete,
+  sectionShowEdit,
+} from "./actions";
 import axios from "axios";
 import { useMessages } from "./Use/useMessages";
 
@@ -8,6 +13,7 @@ export const actionsList = {
   list: sectionList,
   create: sectionCreate,
   delete: sectionDelete,
+  edit: sectionShowEdit,
 };
 
 const url = "http://localhost:3008/";
